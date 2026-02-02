@@ -53,7 +53,6 @@ print(effectifRating)
 
 length(effectifRating)
 
-# Effectifs en pourcentage
 prop.table(effectifRating)
 
 ```
