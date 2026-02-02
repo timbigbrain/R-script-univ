@@ -54,5 +54,23 @@ print(effectifRating)
 length(effectifRating)
 
 prop.table(effectifRating)
+extraction2 <- subset(dfAnime, Rating == "R - 17+ (violence & profanity)")
+nrow(extraction2)
+
+extraction3 <- subset(dfAnime, Rating == "R - 17+ (violence & profanity)" & Score >= 8)
+nrow(extraction3)
+
+extraction4 <- subset(dfAnime, Rating != "R - 17+ (violence & profanity)")
+nrow(extraction4)
+
+extraction5 <- subset(dfAnime, Rating %in% c("PG - Children","G - All Ages"))
+nrow(extraction5)
+
+extraction6 <- subset(dfAnime, !Rating %in% c("PG - Children","G - All Ages"))
+nrow(extraction6)
+
+extraction7 <- subset(dfAnime, Score >= 9 | Vote > 400000)
+nrow(extraction7)
+
 
 ```
