@@ -1,5 +1,6 @@
 # R-script-univ
 ## TP 1
+### 1
 iris
 class(iris) 'la classe d Iris'
 View(iris) 'visuamiser iris en tableau'
@@ -14,3 +15,4 @@ mean(iris$Sepal.Length) 'Calculer la moyenne de la variable'
 median(iris$Sepal.Length) 'Calculer la médiane de la variable'
 sd(iris$Petal.Length) 'Calculer l écart-type de la variable'
 quantile(iris$Petal.Width, probs = seq(from = 0.1, to = 0.9, by =0.1)) 'Calculer les déciles de la variable '
+### 2
