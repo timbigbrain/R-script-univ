@@ -1,23 +1,42 @@
 # R-script-univ
+
 ## TP 1
-### 1
-'iris
-class(iris) 'la classe d Iris'
-View(iris) 'visuamiser iris en tableau'
-nrow(iris) 'nb lignes'
-ncol(iris)'nb colonnes'
-colnames(iris) 'Afficher le nom des colonnes'
-summary(iris) 'Afficher un résumé du dataframe'
-iris[ , c("Sepal.Length","Species")] 'Afficher uniquement les colonnes précisées'
-iris[ c(100,103,105) , ] 'Afficher uniquement la ligne 100,103 et 105.'
-iris[c(50:100),]'Afficher uniquement les lignes 50 à 100.'
-mean(iris$Sepal.Length) 'Calculer la moyenne de la variable'
-median(iris$Sepal.Length) 'Calculer la médiane de la variable'
-sd(iris$Petal.Length) 'Calculer l écart-type de la variable'
-quantile(iris$Petal.Width, probs = seq(from = 0.1, to = 0.9, by =0.1)) 'Calculer les déciles de la variable '
-### 2
-dfManga <- read.csv("C:/Users/tjacon/Downloads/manga.csv", header = TRUE, sep = ",", dec = ".")
-dfAnime <- read.csv("C:/Users/tjacon/Downloads/anime.csv", header = TRUE, sep = ",", dec = ".")
+
+---
+
+## Exercice 1 : Jeu de données iris
+
+### Commandes de base
+- `class(iris)`
+- `View(iris)`
+- `nrow(iris)`
+- `ncol(iris)`
+- `colnames(iris)`
+- `summary(iris)`
+
+### Sélection de données
+- `iris[, c("Sepal.Length", "Species")]`
+- `iris[c(100, 103, 105), ]`
+- `iris[50:100, ]`
+
+### Statistiques descriptives
+- `mean(iris$Sepal.Length)`
+- `median(iris$Sepal.Length)`
+- `sd(iris$Petal.Length)`
+- `quantile(iris$Petal.Width, probs = seq(from = 0.1, to = 0.9, by = 0.1))`
+
+---
+
+## Exercice 2 : Manga & Anime
+
+### Importation des données
+
+```r
+dfManga <- read.csv("C:/Users/tjacon/Downloads/manga.csv",
+                    header = TRUE, sep = ",", dec = ".")
+
+dfAnime <- read.csv("C:/Users/tjacon/Downloads/anime.csv",
+                    header = TRUE, sep = ",", dec = ".")
 View(dfManga)
 View(dfAnime)'Afficher les jeux de données dans des vues pour les visualiser'
 dim(dfManga)
@@ -29,4 +48,4 @@ sum(dfAnime$Vote)
 sd(dfManga$Score)
 sd(dfAnime$Score)
 quantile(dfManga$Score, probs = seq(from = 0.1, to = 0.9, by = 0.1))
-quantile(dfAnime$Score, probs = seq(from = 0.1, to = 0.9, by = 0.1))'
+quantile(dfAnime$Score, probs = seq(from = 0.1, to = 0.9, by = 0.1))
