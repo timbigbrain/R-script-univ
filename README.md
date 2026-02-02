@@ -34,4 +34,26 @@ sd(dfAnime$Score)
 
 quantile(dfManga$Score, probs = seq(from = 0.1, to = 0.9, by = 0.1))
 quantile(dfAnime$Score, probs = seq(from = 0.1, to = 0.9, by = 0.1))
+
+extraction1 <- subset(dfManga, Score > 9)
+nrow(extraction1)
+
+extraction2 <- subset(dfManga, Vote >= 200000)
+nrow(extraction2)
+
+extraction3 <- subset(dfManga, Vote > 200000 & Score > 8)
+nrow(extraction3)
+
+
+extraction4 <- subset(dfManga, Score >= 7 & Score <= 8)
+nrow(extraction4)
+
+effectifRating <- table(dfAnime$Rating)
+print(effectifRating)
+
+length(effectifRating)
+
+# Effectifs en pourcentage
+prop.table(effectifRating)
+
 ```
