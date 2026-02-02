@@ -7,12 +7,12 @@
 ## Exercice 1 : Jeu de données iris
 
 ### Commandes de base
-- `class(iris)`
-- `View(iris)`
-- `nrow(iris)`
-- `ncol(iris)`
-- `colnames(iris)`
-- `summary(iris)`
+class(iris)
+View(iris)
+nrow(iris)
+ncol(iris)
+colnames(iris)
+summary(iris)
 
 ### Sélection de données
 - `iris[, c("Sepal.Length", "Species")]`
