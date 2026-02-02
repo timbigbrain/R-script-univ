@@ -1,7 +1,7 @@
 # R-script-univ
 ## TP 1
 ### 1
-iris
+'iris
 class(iris) 'la classe d Iris'
 View(iris) 'visuamiser iris en tableau'
 nrow(iris) 'nb lignes'
@@ -29,4 +29,4 @@ sum(dfAnime$Vote)
 sd(dfManga$Score)
 sd(dfAnime$Score)
 quantile(dfManga$Score, probs = seq(from = 0.1, to = 0.9, by = 0.1))
-quantile(dfAnime$Score, probs = seq(from = 0.1, to = 0.9, by = 0.1))
+quantile(dfAnime$Score, probs = seq(from = 0.1, to = 0.9, by = 0.1))'
