@@ -74,9 +74,9 @@ nrow(extraction7)
 
 ```
 
-###TD 2
-##Exercice 1
-
+### TD 2
+## Exercice 1
+```r
 setwd("L:/BUT/SD/Promo 2025/tjacon/datasets")
 
 bodies_karts <- read.csv("bodies_karts.csv", header = TRUE, sep = ";", dec = ",")
@@ -86,9 +86,9 @@ drivers <- read.csv("drivers.csv", header = TRUE, sep = ";", dec = ",")
 
 
 getwd()
-
+```
 ##Exercice 2
-
+```r
 dim(bodies_karts)
 dim(tires)
 dim(gliders)
@@ -109,4 +109,4 @@ sdx = sd(drivers$Weight)
 sdy = sd(drivers$Acceleration)
 
 print(covxy / (sdx*sdy))
-
+```
