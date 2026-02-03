@@ -72,5 +72,40 @@ nrow(extraction6)
 extraction7 <- subset(dfAnime, Score >= 9 | Vote > 400000)
 nrow(extraction7)
 
+###TD 2
+##Exercice 1
+
+setwd("L:/BUT/SD/Promo 2025/tjacon/datasets")
+
+bodies_karts <- read.csv("bodies_karts.csv", header = TRUE, sep = ";", dec = ",")
+tires <- read.csv("tires.csv", header = TRUE, sep = "\t", dec = ",")
+gliders <- read.csv("gliders.csv", header = TRUE, sep = "|", dec = ".")
+drivers <- read.csv("drivers.csv", header = TRUE, sep = ";", dec = ",")
+
+
+getwd()
+
+##Exercice 2
+
+dim(bodies_karts)
+dim(tires)
+dim(gliders)
+dim(drivers)
+
+summary(bodies_karts)
+summary(tires)
+summary(gliders)
+summary(drivers)
+
+
+plot(x = drivers$Weight, y = drivers$Acceleration, main = "Drivers : Weight/Acceleration")
+
+cor(x = drivers$Weight, y = drivers$Acceleration)
+
+covxy = cov(x = drivers$Weight, y = drivers$Acceleration)
+sdx = sd(drivers$Weight)
+sdy = sd(drivers$Acceleration)
+
+print(covxy / (sdx*sdy))
 
 ```
