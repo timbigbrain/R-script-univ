@@ -110,3 +110,83 @@ sdy = sd(drivers$Acceleration)
 
 print(covxy / (sdx*sdy))
 ```
+coefCorr = cor(x = drivers$Weight,
+               y = drivers$Acceleration)
+coefDeter = coefCorr^2
+print(coefDeter)
+
+matriceCor = cor(drivers[ , - 1])
+matriceCor = round(matriceCor , 2)
+View(matriceCor)
+#Les résultats se rapproche tous de 1 ou -1 donc les variables sont fortement corrélées
+
+install.packages("corrplot")
+
+library(corrplot) 
+corrplot(matriceCor, method="circle")
+
+matriceCor = round(cor(tires[ , - 1]),1)
+corrplot(matriceCor, method="color",  
+         type="upper", order="hclust", 
+         addCoef.col = "black", # Ajout du coefficient de corrélation
+         tl.col="black", tl.srt=45, #Rotation des étiquettes de textes
+         # Cacher les coefficients de corrélation sur la diagonale
+         diag=FALSE 
+)
+
+
+matriceCor = round(cor(bodies_karts[ , - 1]),1)
+corrplot(matriceCor, method="color",  
+         type="upper", order="hclust", 
+         addCoef.col = "black", # Ajout du coefficient de corrélation
+         tl.col="black", tl.srt=45, #Rotation des étiquettes de textes
+         # Cacher les coefficients de corrélation sur la diagonale
+         diag=FALSE 
+)
+
+matriceCor = round(cor(gliders[ , - 1]),1)
+corrplot(matriceCor, method="color",  
+         type="upper", order="hclust", 
+         addCoef.col = "black", # Ajout du coefficient de corrélation
+         tl.col="black", tl.srt=45, #Rotation des étiquettes de textes
+         # Cacher les coefficients de corrélation sur la diagonale
+         diag=FALSE 
+)
+```
+### Exercice 3
+```r
+resultat = drivers[ , c("Driver" , "Weight")]
+View(resultat)
+
+resultat = drivers[ 1:10 , c("Driver" , "Acceleration")]
+View(resultat)
+
+resultat = drivers[ , -c(5,7,9)]
+View(resultat)
+
+resultat = drivers[ , -c("Weight","Acceleration")] 
+resultat = drivers[ , -c(2,3)]
+
+resultat = drivers[ , c("Driver", "Acceleration", "Weight")]
+View(resultat)
+
+resultat = drivers[ c(3,12,32) , ]
+View(resultat)
+resultat = drivers[ c(32,3,12) , ]
+view(resultat)
+
+rang = order(drivers$Acceleration, decreasing = TRUE)
+resultat = drivers[ rang  , c("Driver", "Acceleration") ]
+View(resultat)
+
+rang = order(drivers$Acceleration, drivers$Weight, decreasing = c(TRUE,FALSE))
+resultat = drivers[ rang  , c("Driver", "Acceleration","Weight") ]
+View(resultat)
+```
+### Exercice 4
+```r
+help(subset)
+topDriver = subset(x = drivers,
+                   subset = Acceleration == max(Acceleration), 
+                   select = c("Driver","Acceleration"))
+```
