@@ -87,7 +87,7 @@ drivers <- read.csv("drivers.csv", header = TRUE, sep = ";", dec = ",")
 
 getwd()
 ```
-##Exercice 2
+## Exercice 2
 ```r
 dim(bodies_karts)
 dim(tires)
