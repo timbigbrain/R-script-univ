@@ -109,7 +109,7 @@ sdx = sd(drivers$Weight)
 sdy = sd(drivers$Acceleration)
 
 print(covxy / (sdx*sdy))
-```
+
 coefCorr = cor(x = drivers$Weight,
                y = drivers$Acceleration)
 coefDeter = coefCorr^2
