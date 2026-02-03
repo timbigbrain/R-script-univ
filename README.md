@@ -72,6 +72,8 @@ nrow(extraction6)
 extraction7 <- subset(dfAnime, Score >= 9 | Vote > 400000)
 nrow(extraction7)
 
+```
+
 ###TD 2
 ##Exercice 1
 
@@ -108,4 +110,3 @@ sdy = sd(drivers$Acceleration)
 
 print(covxy / (sdx*sdy))
 
-```
