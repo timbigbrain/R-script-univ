@@ -192,13 +192,13 @@ topDriver = subset(x = drivers,
 ```
 ### TP 2
 ## Exercice 1
-'''r
+```r
 df<-read.csv("fao.csv", sep=";", dec=",", header = TRUE)
 nrow(df)
 summary(df)
 '''
 ## Exercice 2
-'''r
+```r
 mean(df$Dispo_alim, na.rm=TRUE)
 sum(df$Population, na.rm=TRUE)
 sd(df$Export_viande, na.rm=TRUE)
@@ -208,6 +208,7 @@ quantile(df$Dispo_alim)
 quantile(df$Import_viande, seq(0,1,0.01))
 '''
 ## Exercice 3
+```r
 rang = order(df$Population)
 resultat = head(df[ rang , ], n = 5)
 View(resultat)
@@ -228,7 +229,7 @@ resultat = subset(df, Nom %in% c("France","Belgique"))
 View(resultat)
 '''
 ## Exercice 4
-'''r
+```r
 df$Part_export<-df$Export_viande/df$Prod_viande
 df$Dispo_alim_pays<-df$Dispo_alim*df$Population
 write.table(x = df, file = "ExportTp2.csv")
@@ -237,6 +238,7 @@ dispo_alim_mondiale
 dispo_alim_mondiale/2300
 
 ## Exercice 5
+```r
 plot(x = df$Prod_viande,
      y = df$Export_viande, 
      main = "Pays : Prod_viande / Export_viande")
@@ -251,4 +253,4 @@ View(matriceCor)
 install.packages("corrplot")
 library(corrplot) #je charge mon package pour pouvoir utiliser ses fonctionalités
 corrplot(matriceCor, method="circle")
-'''
+```
