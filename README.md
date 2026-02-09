@@ -254,3 +254,23 @@ install.packages("corrplot")
 library(corrplot) #je charge mon package pour pouvoir utiliser ses fonctionalités
 corrplot(matriceCor, method="circle")
 ```
+### TD 3
+## Exercice 2
+r```
+pokemon <- readxl::read_excel(
+  path = "C:/Users/tjacon/Downloads/pokemon.xlsx",
+  sheet = "pokemon"
+)
+
+dim(pokemon)
+ncol(pokemon)
+nrow(pokemon)
+
+summary(pokemon)
+
+pokemon$is_legendary <-as.factor(pokemon$is_legendary)
+pokemon$generation <-as.factor(pokemon$generation)
+pokemon$type <-as.factor(pokemon$type)
+
+summary(pokemon)
+```
