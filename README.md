@@ -256,7 +256,7 @@ corrplot(matriceCor, method="circle")
 ```
 ### TD 3
 ## Exercice 2
-r```
+```r
 pokemon <- readxl::read_excel(
   path = "C:/Users/tjacon/Downloads/pokemon.xlsx",
   sheet = "pokemon"
