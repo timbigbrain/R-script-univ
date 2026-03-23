@@ -386,7 +386,7 @@ aggregate(speed ~ generation + type,
                               med = median(x),
                               eff = length(x) ) )
 ```
-### TP 1
+### TP 4
 ## Exercice 1
 ```r
 salaire_net_cadre = function(salaire_brut){
