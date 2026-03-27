@@ -578,3 +578,119 @@ for (i in 1:5) {
   print(paste("Le carré de", nombre, "est", carre))
 }
 ```
+# ==============================================================================
+# Titre : TP5 - Jointures et Interrogation de bases de données (NBA)
+# Objectifs : Construire des jointures, utiliser SQLite, interroger une BDD
+
+# Chargement des bibliothèques nécessaires
+library(tools)   # Pour file_path_sans_ext
+library(DBI)     # Pour la connexion aux bases de données
+library(RSQLite) # Pour le pilote SQLite
+
+# ------------------------------------------------------------------------------
+# EXERCICE 1 - Importation des données
+# ------------------------------------------------------------------------------
+
+# 1. Définition du répertoire de travail (à adapter selon votre chemin)
+# setwd("C:/Users/VotreNom/Documents/nba")
+cat("Répertoire actuel :", getwd(), "\n")
+
+# 2. Lister tous les fichiers CSV du dossier
+fichiers <- list.files(path = getwd(),
+                       pattern = ".csv$",
+                       full.names = TRUE)
+
+# 3, 4 & 5. Boucle d'importation automatique avec assign()
+cat("--- Début de l'importation des fichiers ---\n")
+for (fichier in fichiers) {
+  # Extraire le nom du fichier sans extension pour nommer l'objet
+  nom_objet <- file_path_sans_ext(basename(fichier))
+  
+  # Chronométrage de l'importation
+  start_time <- Sys.time()
+  
+  # Lecture et assignation dynamique
+  assign(nom_objet, read.csv(fichier, sep = ",", dec = "."))
+  
+  end_time <- Sys.time()
+  execution_time <- round(end_time - start_time, 2)
+  
+  cat("Importation réussie :", nom_objet, "| Temps :", execution_time, "sec\n")
+}
+cat("--- Fin de l'importation ---\n\n")
+
+
+# ------------------------------------------------------------------------------
+# EXERCICE 2 - Les jointures (Manipulation de Dataframes)
+# ------------------------------------------------------------------------------
+
+# 1. Matchs à Los Angeles depuis la création
+df_la_teams <- subset(team, city == "Los Angeles", select = c("id", "city"))
+df_la_games <- merge(x = df_la_teams, 
+                     y = game[, c("game_id", "team_id_home")], 
+                     by.x = "id", 
+                     by.y = "team_id_home")
+
+cat("Nombre de matchs à Los Angeles :", nrow(df_la_games), "\n")
+
+# 2. Affluence moyenne à Los Angeles
+df_la_attendance <- merge(x = df_la_games, 
+                          y = game_info[, c("game_id", "attendance")], 
+                          by = "game_id", 
+                          all.x = TRUE)
+
+moyenne_affluence <- mean(df_la_attendance$attendance, na.rm = TRUE)
+cat("Affluence moyenne à LA :", round(moyenne_affluence, 2), "spectateurs\n")
+
+# 3. Nombre d'arbitres différents en 2020
+df_2020 <- subset(game_summary, season == 2020, select = c("game_id", "season"))
+df_officials_2020 <- merge(x = df_2020, y = officials, by = "game_id")
+
+nb_arbitres <- length(unique(df_officials_2020$official_id))
+cat("Nombre d'arbitres en 2020 :", nb_arbitres, "\n")
+
+# 4. Matchs officiés par Dick Bavetta par saison
+df_dick <- subset(officials, first_name == "Dick" & last_name == "Bavetta")
+df_bavetta_seasons <- merge(x = game_summary[, c("game_id", "season")], 
+                            y = df_dick, 
+                            by = "game_id")
+
+cat("Répartition des matchs de Dick Bavetta par saison :\n")
+print(table(df_bavetta_seasons$season))
+
+
+# ------------------------------------------------------------------------------
+# EXERCICE 3 - Connexion à une base de données SQLite
+# ------------------------------------------------------------------------------
+
+# 1. Connexion (Assurez-vous que le fichier .sqlite est dans le dossier)
+if (file.exists("nbaDb.sqlite")) {
+  mydb <- dbConnect(SQLite(), "nbaDb.sqlite")
+  
+  # 2. Lister les tables
+  print(dbListTables(mydb))
+  
+  # 3. Sélectionner les 5 premières lignes de 'team'
+  print(dbGetQuery(mydb, 'SELECT * FROM team LIMIT 5'))
+  
+  # 4 & 5. Jointure SQL et création d'une nouvelle table
+  # Exemple : On récupère les noms des équipes et leurs matchs
+  query <- "
+    SELECT t.full_name, g.game_date 
+    FROM team t
+    INNER JOIN game g ON t.id = g.team_id_home
+    LIMIT 100
+  "
+  df_jointure_sql <- dbGetQuery(mydb, query)
+  
+  # Stocker dans la base
+  dbWriteTable(mydb, "top_100_home_games", df_jointure_sql, overwrite = TRUE)
+  
+  # 6. Déconnexion
+  dbDisconnect(mydb)
+  cat("\nConnexion SQLite fermée proprement.\n")
+} else {
+  cat("\nFichier nbaDb.sqlite introuvable. Sautez l'étape SQLite.\n")
+}
+
+cat("\n--- Script terminé avec succès ---")
