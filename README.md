@@ -578,7 +578,6 @@ for (i in 1:5) {
   print(paste("Le carré de", nombre, "est", carre))
 }
 ```
-# ==============================================================================
 # Titre : TP5 - Jointures et Interrogation de bases de données (NBA)
 # Objectifs : Construire des jointures, utiliser SQLite, interroger une BDD
 
@@ -587,9 +586,7 @@ library(tools)   # Pour file_path_sans_ext
 library(DBI)     # Pour la connexion aux bases de données
 library(RSQLite) # Pour le pilote SQLite
 
-# ------------------------------------------------------------------------------
 # EXERCICE 1 - Importation des données
-# ------------------------------------------------------------------------------
 
 # 1. Définition du répertoire de travail (à adapter selon votre chemin)
 # setwd("C:/Users/VotreNom/Documents/nba")
@@ -620,9 +617,7 @@ for (fichier in fichiers) {
 cat("--- Fin de l'importation ---\n\n")
 
 
-# ------------------------------------------------------------------------------
 # EXERCICE 2 - Les jointures (Manipulation de Dataframes)
-# ------------------------------------------------------------------------------
 
 # 1. Matchs à Los Angeles depuis la création
 df_la_teams <- subset(team, city == "Los Angeles", select = c("id", "city"))
@@ -658,10 +653,7 @@ df_bavetta_seasons <- merge(x = game_summary[, c("game_id", "season")],
 cat("Répartition des matchs de Dick Bavetta par saison :\n")
 print(table(df_bavetta_seasons$season))
 
-
-# ------------------------------------------------------------------------------
 # EXERCICE 3 - Connexion à une base de données SQLite
-# ------------------------------------------------------------------------------
 
 # 1. Connexion (Assurez-vous que le fichier .sqlite est dans le dossier)
 if (file.exists("nbaDb.sqlite")) {
